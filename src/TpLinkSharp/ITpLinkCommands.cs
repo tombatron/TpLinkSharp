@@ -6,6 +6,7 @@ namespace TpLinkSharp
     public interface ITpLinkCommands
     {
         Task<Status> GetCurrentStatus ();
-        
+
+        ISystemTools SystemTools { get; }
     }
 }
