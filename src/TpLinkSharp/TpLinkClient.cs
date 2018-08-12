@@ -47,7 +47,7 @@ namespace TpLinkSharp
             }
             else
             {
-                // Throw an exception here. 
+                // TODO: Throw an exception here. 
             }
         }
 
@@ -56,6 +56,8 @@ namespace TpLinkSharp
             if (_securityToken != default (string))
             {
                 var response = _client.GetAsync ("/userRpm/LogoutRpm.htm").GetAwaiter ().GetResult ();
+
+                // TODO: If logout is unsucessful, throw an exception.
 
                 _securityToken = default (string);
             }
