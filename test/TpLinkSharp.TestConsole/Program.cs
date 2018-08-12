@@ -1,4 +1,5 @@
 ﻿using System;
+using TpLinkSharp;
 
 namespace TpLinkSharp.TestConsole
 {
@@ -6,7 +7,10 @@ namespace TpLinkSharp.TestConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var username = Environment.GetEnvironmentVariable("ROUTER_USERNAME");
+            var password = Environment.GetEnvironmentVariable("ROUTER_PASSWORD");
+
+            Console.WriteLine($"Username: {username} | Password: {password}");
         }
     }
 }
