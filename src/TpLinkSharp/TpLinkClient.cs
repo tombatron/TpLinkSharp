@@ -63,7 +63,7 @@ namespace TpLinkSharp
             }
         }
 
-        private async Task<string> SendSecuredCommand (string path)
+        internal async Task<string> SendSecuredCommand (string path)
         {
             var securedPath = $"{_securityToken}{path}";
 
