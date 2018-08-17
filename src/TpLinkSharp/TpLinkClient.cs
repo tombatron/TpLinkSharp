@@ -65,9 +65,10 @@ namespace TpLinkSharp
 
         internal async Task<string> SendSecuredCommand (string path)
         {
-            var securedPath = $"{_securityToken}{path}";
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"/{_securityToken}{path}");
+            requestMessage.Headers.Add("Referer", $"{_baseAdminUrl}/{_securityToken}/userRpm/MenuRpm.htm");
 
-            var response = await _client.GetAsync (securedPath);
+            var response = await _client.SendAsync(requestMessage);
 
             return await response.Content.ReadAsStringAsync ();
         }

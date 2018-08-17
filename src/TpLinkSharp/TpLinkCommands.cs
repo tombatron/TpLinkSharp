@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using TpLinkSharp.Models;
 
@@ -15,8 +16,8 @@ namespace TpLinkSharp
 
         public async Task<Status> GetCurrentStatus()
         {
-            var response = await _client.SendSecuredCommand("/userRpm/Index.html");
-            
+            var response = await _client.SendSecuredCommand("/userRpm/StatusRpm.htm");
+
             return default(Status);
         }
     }
