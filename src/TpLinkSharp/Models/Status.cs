@@ -17,6 +17,8 @@ namespace TpLinkSharp.Models
         private string _hardwareVersion;
         private string _systemUptime;
 
+        private readonly MatchCollection _arrayMatches;
+
         public string FirmwareVersion
         {
             get
@@ -83,11 +85,13 @@ namespace TpLinkSharp.Models
         public WanInfo Wan { get; }
         public TrafficStatisticsInfo TrafficStatistics { get; }
 
-        private Status(string firmwareVersion, string hardwareVersion, string systemUptime)
+        private Status(string firmwareVersion, string hardwareVersion, string systemUptime, MatchCollection arrayMatches)
         {
             FirmwareVersion = firmwareVersion;
             HardwareVersion = hardwareVersion;
             SystemUptime = systemUptime;
+
+            _arrayMatches = arrayMatches;
         }
 
         public static Status FromHtmlResponse(string responseHtml)
@@ -98,7 +102,7 @@ namespace TpLinkSharp.Models
 
             var statusElements = statusGroup.Split(',');
 
-            return new Status(statusElements[FirmwareVersionIndex], statusElements[HardwareVersionIndex], statusElements[SystemUptimeIndex]);
+            return new Status(statusElements[FirmwareVersionIndex], statusElements[HardwareVersionIndex], statusElements[SystemUptimeIndex], arrayMatches);
         }
     }
 }
