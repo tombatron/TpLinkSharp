@@ -17,4 +17,10 @@
     <ProjectReference Include="..\..\src\TpLinkSharp\TpLinkSharp.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestAssets\StatusRpmResponse.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
