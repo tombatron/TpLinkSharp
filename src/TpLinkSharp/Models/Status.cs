@@ -16,7 +16,7 @@ namespace TpLinkSharp.Models
 
         private const int StatusInfoArrayIndex = 0;
         private const int LanInfoArrayIndex = 1;
-        private const int Wireless25ghzInfoArrayIndex = 2;
+        private const int Wireless24ghzInfoArrayIndex = 2;
         private const int Wireless5ghzInfoArrayIndex = 3;
         private const int TrafficStatisticsInfoArrayIndex = 4;
         private const int WanInfoArrayIndex = 5;
@@ -25,6 +25,8 @@ namespace TpLinkSharp.Models
         private string _hardwareVersion;
         private string _systemUptime;
         private LanInfo _lan;
+        private WirelessInfo _wireless24ghz;
+        private WirelessInfo _wireless5ghz;
 
         private readonly string[][] _parsedArrays;
 
@@ -85,8 +87,33 @@ namespace TpLinkSharp.Models
                 return _lan;
             }
         }
-        public WirelessInfo Wireless24ghz { get; }
-        public WirelessInfo Wireless5ghz { get; }
+
+        public WirelessInfo Wireless24ghz
+        {
+            get
+            {
+                if (_wireless24ghz == default(WirelessInfo))
+                {
+                    _wireless24ghz = new WirelessInfo(_parsedArrays[Wireless24ghzInfoArrayIndex]);
+                }
+
+                return _wireless24ghz;
+            }
+        }
+
+        public WirelessInfo Wireless5ghz
+        {
+            get
+            {
+                if (_wireless5ghz == default(WirelessInfo))
+                {
+                    _wireless5ghz = new WirelessInfo(_parsedArrays[Wireless5ghzInfoArrayIndex]);
+                }
+
+                return _wireless5ghz;
+            }
+        }
+
         public WanInfo Wan { get; }
         public TrafficStatisticsInfo TrafficStatistics { get; }
 

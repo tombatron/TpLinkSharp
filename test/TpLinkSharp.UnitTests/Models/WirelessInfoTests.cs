@@ -62,7 +62,7 @@ namespace TpLinkSharp.UnitTests.Models
             {
                 var wirelessInfo = new WirelessInfo(WirelessInfoArray);
 
-                Assert.Equal("Disable", wirelessInfo.WdsStatus);
+                Assert.Equal("Disabled", wirelessInfo.WdsStatus);
             }
         }
     }

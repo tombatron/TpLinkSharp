@@ -73,13 +73,15 @@ namespace TpLinkSharp.Models
 
             private set
             {
-                if (value == "15")
+                var trimmedChannel = value.Trim();
+
+                if (trimmedChannel == "15")
                 {
                     _channel = $"Auto (Current channel {_autoChannel})";
                 }
                 else
                 {
-                    _channel = value;
+                    _channel = trimmedChannel;
                 }
             }
         }
@@ -107,7 +109,7 @@ namespace TpLinkSharp.Models
 
         public WirelessInfo(string[] wirelessInfoArray)
         {
-            _autoChannel = wirelessInfoArray[AutoChannelIndex];
+            _autoChannel = wirelessInfoArray[AutoChannelIndex].Trim();
 
             WirelessRadio = wirelessInfoArray[WirelessRadioStatusIndex];
             NameSsid = wirelessInfoArray[NameSsidIndex];
@@ -122,7 +124,7 @@ namespace TpLinkSharp.Models
         {
             string result;
 
-            switch (wdsStatusId)
+            switch (wdsStatusId.Trim())
             {
                 case "0":
                     result = "Init...";
@@ -149,7 +151,7 @@ namespace TpLinkSharp.Models
                     break;
 
                 case "6":
-                    result = "Disable";
+                    result = "Disabled";
                     break;
 
                 default:
