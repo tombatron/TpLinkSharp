@@ -31,14 +31,14 @@ namespace TpLinkSharp.Models
         {
             get => _firmwareVersion;
 
-            private set => RemoveLeadingAndTrailingQuotes(value);
+            private set => _firmwareVersion = RemoveLeadingAndTrailingQuotes(value);
         }
 
         public string HardwareVersion
         {
             get => _hardwareVersion;
 
-            private set => RemoveLeadingAndTrailingQuotes(value);
+            private set => _hardwareVersion = RemoveLeadingAndTrailingQuotes(value);
         }
 
         public string SystemUptime
