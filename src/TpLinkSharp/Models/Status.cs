@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -13,11 +14,18 @@ namespace TpLinkSharp.Models
         private const int HardwareVersionIndex = 7;
         private const int SystemUptimeIndex = 5;
 
+        private const int StatusInfoArrayIndex = 0;
+        private const int LanInfoArrayIndex = 1;
+        private const int Wireless25ghzInfoArrayIndex = 2;
+        private const int Wireless5ghzInfoArrayIndex = 3;
+        private const int TrafficStatisticsInfoArrayIndex = 4;
+        private const int WanInfoArrayIndex = 5;
+
         private string _firmwareVersion;
         private string _hardwareVersion;
         private string _systemUptime;
 
-        private readonly MatchCollection _arrayMatches;
+        private readonly string[][] _parsedArrays;
 
         public string FirmwareVersion
         {
@@ -85,24 +93,20 @@ namespace TpLinkSharp.Models
         public WanInfo Wan { get; }
         public TrafficStatisticsInfo TrafficStatistics { get; }
 
-        private Status(string firmwareVersion, string hardwareVersion, string systemUptime, MatchCollection arrayMatches)
+        private Status(string[][] parsedArrays)
         {
-            FirmwareVersion = firmwareVersion;
-            HardwareVersion = hardwareVersion;
-            SystemUptime = systemUptime;
+            FirmwareVersion = parsedArrays[StatusInfoArrayIndex][FirmwareVersionIndex];
+            HardwareVersion = parsedArrays[StatusInfoArrayIndex][HardwareVersionIndex];
+            SystemUptime = parsedArrays[StatusInfoArrayIndex][SystemUptimeIndex];
 
-            _arrayMatches = arrayMatches;
+            _parsedArrays = parsedArrays;
         }
 
         public static Status FromHtmlResponse(string responseHtml)
         {
-            var arrayMatches = ArrayPattern.Matches(responseHtml);
+            var parsedArrays = ArrayPattern.Matches(responseHtml).Cast<Match>().Select(x => x.Groups[1].Value.Split(',')).ToArray();
 
-            var statusGroup = arrayMatches[0].Groups[1].Value;
-
-            var statusElements = statusGroup.Split(',');
-
-            return new Status(statusElements[FirmwareVersionIndex], statusElements[HardwareVersionIndex], statusElements[SystemUptimeIndex], arrayMatches);
+            return new Status(parsedArrays);
         }
     }
 }
