@@ -6,8 +6,8 @@ namespace TpLinkSharp.Models
 {
     public class Status
     {
-        private static Regex ArrayPattern = new Regex(@"new Array\(([^\)]+)\)", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.IgnoreCase);
-        private static Regex QuotedTextPattern = new Regex("\"(.*?)\"", RegexOptions.Compiled);
+        private static readonly Regex ArrayPattern = new Regex(@"new Array\(([^\)]+)\)", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.IgnoreCase);
+        private static readonly Regex QuotedTextPattern = new Regex("\"(.*?)\"", RegexOptions.Compiled);
 
         private const int FirmwareVersionIndex = 6;
         private const int HardwareVersionIndex = 7;
