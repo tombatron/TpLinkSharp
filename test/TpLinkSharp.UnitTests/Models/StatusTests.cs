@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using TpLinkSharp.Models;
+﻿using TpLinkSharp.Models;
 using Xunit;
 
 namespace TpLinkSharp.UnitTests.Models
