@@ -24,6 +24,7 @@ namespace TpLinkSharp.Models
         private string _firmwareVersion;
         private string _hardwareVersion;
         private string _systemUptime;
+        private LanInfo _lan;
 
         private readonly string[][] _parsedArrays;
 
@@ -72,7 +73,18 @@ namespace TpLinkSharp.Models
             }
         }
 
-        public LanInfo Lan { get; }
+        public LanInfo Lan
+        {
+            get
+            {
+                if (_lan == default(LanInfo))
+                {
+                    _lan = new LanInfo(_parsedArrays[LanInfoArrayIndex]);
+                }
+
+                return _lan;
+            }
+        }
         public WirelessInfo Wireless24ghz { get; }
         public WirelessInfo Wireless5ghz { get; }
         public WanInfo Wan { get; }
