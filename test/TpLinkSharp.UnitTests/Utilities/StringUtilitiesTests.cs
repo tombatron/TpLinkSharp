@@ -13,6 +13,16 @@ namespace TpLinkSharp.UnitTests.Utilities
             var encodedString = Base64Encode(testString);
 
             Assert.Equal("aGVsbG8gd29ybGQ=", encodedString);
-        }        
+        }
+
+        [Fact]
+        public void ItCanRemoveLeadingAndTrailingQuotes()
+        {
+            var testString = "\"hello world\"";
+
+            var stringWithRemovedQuotes = RemoveLeadingAndTrailingQuotes(testString);
+
+            Assert.Equal("hello world", stringWithRemovedQuotes);
+        }
     }
 }
