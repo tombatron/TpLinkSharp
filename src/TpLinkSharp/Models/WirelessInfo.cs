@@ -6,6 +6,7 @@ namespace TpLinkSharp.Models
     {
         private readonly static string[] _wlanTypes = new[]
         {
+            string.Empty,
             "11b only",
             "11g only",
             "11n only",
@@ -20,6 +21,7 @@ namespace TpLinkSharp.Models
 
         private readonly static string[] _channelWidths = new[]
         {
+            string.Empty,
             "20MHz",
             "Automatic",
             "40MHz"
@@ -42,6 +44,7 @@ namespace TpLinkSharp.Models
         private string _channelWidth;
         private string _macAddress;
         private string _wdsStatus;
+        private string _autoChannel;
 
         public string WirelessRadio
         {
@@ -68,32 +71,44 @@ namespace TpLinkSharp.Models
         {
             get => _channel;
 
-            set => _channel = value.Trim();
+            private set
+            {
+                if (value == "15")
+                {
+                    _channel = $"Auto (Current channel {_autoChannel})";
+                }
+                else
+                {
+                    _channel = value;
+                }
+            }
         }
 
         public string ChannelWidth
         {
             get => _channelWidth;
 
-            set => _channelWidth = _channelWidths[int.Parse(value)];
+            private set => _channelWidth = _channelWidths[int.Parse(value)];
         }
 
         public string MacAddress
         {
             get => _macAddress;
 
-            set => _macAddress = RemoveLeadingAndTrailingQuotes(value);
+            private set => _macAddress = RemoveLeadingAndTrailingQuotes(value);
         }
 
         public string WdsStatus
         {
             get => _wdsStatus;
 
-            set => GetWdsStatus(value);
+            private set => _wdsStatus = GetWdsStatus(value);
         }
 
         public WirelessInfo(string[] wirelessInfoArray)
         {
+            _autoChannel = wirelessInfoArray[AutoChannelIndex];
+
             WirelessRadio = wirelessInfoArray[WirelessRadioStatusIndex];
             NameSsid = wirelessInfoArray[NameSsidIndex];
             Mode = wirelessInfoArray[ModeIndex];
