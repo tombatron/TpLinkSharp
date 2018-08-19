@@ -93,7 +93,7 @@ namespace TpLinkSharp
 
         private static bool IsValidPassword (string password) => HasValidAuthenticationCharacters (password);
 
-        public static bool HasValidAuthenticationCharacters (string authenticationString) =>
+        private static bool HasValidAuthenticationCharacters (string authenticationString) =>
             authenticationString.Length > 0 && ValidAuthenticationStringPattern.IsMatch (authenticationString);
     }
 }
