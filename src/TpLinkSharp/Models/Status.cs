@@ -28,6 +28,7 @@ namespace TpLinkSharp.Models
         private WirelessInfo _wireless24ghz;
         private WirelessInfo _wireless5ghz;
         private WanInfo _wan;
+        private TrafficStatisticsInfo _trafficStatistics;
 
         private readonly string[][] _parsedArrays;
 
@@ -119,7 +120,7 @@ namespace TpLinkSharp.Models
         {
             get
             {
-                if(_wan == default(WanInfo))
+                if (_wan == default(WanInfo))
                 {
                     _wan = new WanInfo(_parsedArrays[WanInfoArrayIndex]);
                 }
@@ -128,7 +129,18 @@ namespace TpLinkSharp.Models
             }
         }
 
-        public TrafficStatisticsInfo TrafficStatistics { get; }
+        public TrafficStatisticsInfo TrafficStatistics
+        {
+            get
+            {
+                if (_trafficStatistics == default(TrafficStatisticsInfo))
+                {
+                    _trafficStatistics = new TrafficStatisticsInfo(_parsedArrays[TrafficStatisticsInfoArrayIndex]);
+                }
+
+                return _trafficStatistics;
+            }
+        }
 
         private Status(string[][] parsedArrays)
         {
