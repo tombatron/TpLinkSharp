@@ -16,7 +16,7 @@ namespace TpLinkSharp.TestConsole
 
                 var commands = new TpLinkCommands(client);
 
-                commands.GetCurrentStatus().GetAwaiter().GetResult();
+                var status = commands.GetCurrentStatus().GetAwaiter().GetResult();
             }
 
             Console.ReadLine();

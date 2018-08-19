@@ -17,7 +17,7 @@ namespace TpLinkSharp
         {
             var response = await _client.SendSecuredCommand("/userRpm/StatusRpm.htm");
 
-            return default(Status);
+            return Status.FromHtmlResponse(response);
         }
     }
 }
