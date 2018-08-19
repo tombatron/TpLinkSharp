@@ -11,6 +11,7 @@ namespace TpLinkSharp
         {
             _client = client;
         }
+
         public ISystemTools SystemTools => throw new System.NotImplementedException();
 
         public async Task<Status> GetCurrentStatus()
