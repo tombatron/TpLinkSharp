@@ -1,15 +1,11 @@
 using System;
-using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using static TpLinkSharp.Utilities.StringUtilities;
 
 namespace TpLinkSharp.Models
 {
     public class Status
     {
-        private static readonly Regex ArrayPattern = new Regex(@"new Array\(([^\)]+)\)", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.IgnoreCase);
-
         private const int FirmwareVersionIndex = 6;
         private const int HardwareVersionIndex = 7;
         private const int SystemUptimeIndex = 5;
@@ -153,7 +149,7 @@ namespace TpLinkSharp.Models
 
         public static Status FromHtmlResponse(string responseHtml)
         {
-            var parsedArrays = ArrayPattern.Matches(responseHtml).Cast<Match>().Select(x => x.Groups[1].Value.Split(',')).ToArray();
+            var parsedArrays = ExtractJavascriptArrays(responseHtml);
 
             return new Status(parsedArrays);
         }
