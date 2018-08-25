@@ -10,9 +10,11 @@ namespace TpLinkSharp
         public TpLinkCommands(TpLinkClient client)
         {
             _client = client;
+
+            SystemTools = new SystemTools(_client);
         }
 
-        public ISystemTools SystemTools => new SystemTools(_client);
+        public ISystemTools SystemTools { get; }
 
         public async Task<Status> GetCurrentStatus()
         {
