@@ -1,19 +1,51 @@
 using System.Collections.Generic;
+using System.Linq;
+using static TpLinkSharp.Utilities.StringUtilities;
 
 namespace TpLinkSharp.Models.SystemTools
 {
     public class BandwidthStatistics
     {
-        private readonly IEnumerable<string> _rawBandwidthStatistics;
+        private const int IpAddressIndex = 1;
+        private const int MacAddressIndex = 2;
+        private const int TotalPacketsIndex = 3;
+        private const int TotalBytesIndex = 4;
 
-        public string IpAddress { get; }
-        public string MacAddress { get; }
+        private readonly string[] _rawBandwidthStatistics;
+
+        private string _ipAddress;
+        private string _macAddress;
+
+        public string IpAddress
+        {
+            get => _ipAddress;
+
+            private set => _ipAddress = RemoveLeadingAndTrailingQuotes(value);
+        }
+
+        public string MacAddress
+        {
+            get => _macAddress;
+
+            private set => _macAddress = RemoveLeadingAndTrailingQuotes(value);
+        }
+
         public long TotalPackets { get; }
+
         public long TotalBytes { get; }
 
-        public BandwidthStatistics(IEnumerable<string> rawBandwidthStatistics)
+        public BandwidthStatistics(IEnumerable<string> rawBandwidthStatistics) :
+            this(rawBandwidthStatistics.ToArray())
+        { }
+
+        public BandwidthStatistics(string[] rawBandwidthStatistics)
         {
             _rawBandwidthStatistics = rawBandwidthStatistics;
+
+            IpAddress = rawBandwidthStatistics[IpAddressIndex];
+            MacAddress = rawBandwidthStatistics[MacAddressIndex];
+            TotalPackets = long.Parse(rawBandwidthStatistics[TotalPacketsIndex]);
+            TotalBytes = long.Parse(rawBandwidthStatistics[TotalBytesIndex]);
         }
     }
 }
