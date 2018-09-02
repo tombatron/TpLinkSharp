@@ -1,7 +1,6 @@
-﻿using Xunit;
-using Moq;
-using System.Linq;
+﻿using Moq;
 using System.Threading.Tasks;
+using Xunit;
 
 namespace TpLinkSharp.UnitTests
 {
