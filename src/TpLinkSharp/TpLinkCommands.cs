@@ -5,9 +5,9 @@ namespace TpLinkSharp
 {
     public class TpLinkCommands : ITpLinkCommands
     {
-        private readonly TpLinkClient _client;
+        private readonly ITpLinkCommandRunner _client;
 
-        public TpLinkCommands(TpLinkClient client)
+        public TpLinkCommands(ITpLinkCommandRunner client)
         {
             _client = client;
 

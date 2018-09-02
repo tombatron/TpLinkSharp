@@ -6,9 +6,9 @@ namespace TpLinkSharp
 {
     public class SystemTools : ISystemTools
     {
-        private readonly TpLinkClient _client;
+        private readonly ITpLinkCommandRunner _client;
 
-        public SystemTools(TpLinkClient client)
+        public SystemTools(ITpLinkCommandRunner client)
         {
             _client = client;
         }

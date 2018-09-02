@@ -9,7 +9,7 @@ using static TpLinkSharp.Utilities.StringUtilities;
 
 namespace TpLinkSharp
 {
-    public class TpLinkClient : IDisposable
+    public class TpLinkClient : ITpLinkCommandRunner, IDisposable
     {
         private static Regex ValidAuthenticationStringPattern = new Regex("^[\x21-\x7e]+$", RegexOptions.Compiled);
         private static Regex UrlPattern = new Regex(@"(http|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?", RegexOptions.Compiled);
@@ -63,7 +63,7 @@ namespace TpLinkSharp
             }
         }
 
-        internal async Task<string> SendSecuredCommand(string path)
+        public async Task<string> SendSecuredCommand(string path)
         {
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"/{_securityToken}{path}");
             requestMessage.Headers.Add("Referer", $"{_baseAdminUrl}/{_securityToken}/userRpm/MenuRpm.htm");
