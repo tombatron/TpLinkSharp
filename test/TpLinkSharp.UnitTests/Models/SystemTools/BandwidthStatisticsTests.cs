@@ -38,6 +38,18 @@ namespace TpLinkSharp.UnitTests.Models.SystemTools
             {
                 Assert.Equal(180012916, BandwidthStatistics.TotalBytes);
             }
+
+            [Fact]
+            public void CurrentPacketsFromRawStatisticsArray()
+            {
+                Assert.Equal(6, BandwidthStatistics.CurrentPackets);
+            }
+
+            [Fact]
+            public void CurrentBytesFromRawStatisticsArray()
+            {
+                Assert.Equal(1967, BandwidthStatistics.CurrentBytes);
+            }
         }
     }
 }

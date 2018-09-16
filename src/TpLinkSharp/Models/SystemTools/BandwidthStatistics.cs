@@ -10,6 +10,8 @@ namespace TpLinkSharp.Models.SystemTools
         private const int MacAddressIndex = 2;
         private const int TotalPacketsIndex = 3;
         private const int TotalBytesIndex = 4;
+        private const int CurrentPacketsIndex = 5;
+        private const int CurrentBytesIndex = 6;
 
         private readonly string[] _rawBandwidthStatistics;
 
@@ -34,6 +36,10 @@ namespace TpLinkSharp.Models.SystemTools
 
         public long TotalBytes { get; }
 
+        public long CurrentPackets { get; }
+
+        public long CurrentBytes { get; }
+
         public BandwidthStatistics(IEnumerable<string> rawBandwidthStatistics) :
             this(rawBandwidthStatistics.ToArray())
         { }
@@ -46,6 +52,8 @@ namespace TpLinkSharp.Models.SystemTools
             MacAddress = rawBandwidthStatistics[MacAddressIndex];
             TotalPackets = long.Parse(rawBandwidthStatistics[TotalPacketsIndex]);
             TotalBytes = long.Parse(rawBandwidthStatistics[TotalBytesIndex]);
+            CurrentPackets = long.Parse(rawBandwidthStatistics[CurrentPacketsIndex]);
+            CurrentBytes = long.Parse(rawBandwidthStatistics[CurrentBytesIndex]);
         }
     }
 }
