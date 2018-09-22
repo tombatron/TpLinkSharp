@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Tom Hanks</Authors>
+    <Company />
+    <RepositoryUrl>https://github.com/tombatron/TpLinkSharp</RepositoryUrl>
   </PropertyGroup>
 
 </Project>
