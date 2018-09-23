@@ -15,5 +15,15 @@ namespace TpLinkSharp.UnitTests.Models.SystemTools
 
             Assert.True(statsCollection.Any());
         }
+
+        [Fact]
+        public void ItCanUnwindTheEntireEnumerable()
+        {
+            var fakeHtmlResponse = ReadTestAssetContent("SystemStatisticRpm.html");
+
+            var statsCollection = BandwidthStatisticsCollection.FromHtmlResponse(fakeHtmlResponse);
+
+            Assert.NotNull(statsCollection.ToList());
+        }
     }
 }

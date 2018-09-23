@@ -43,9 +43,8 @@ namespace TpLinkSharp.Models.SystemTools
             for (var i = 0; i < Rows; i++)
             {
                 var rowStart = i * RowLength;
-                var rowEnd = rowStart + RowLength;
 
-                yield return new BandwidthStatistics(new ArraySegment<string>(rawStatisticsArray, rowStart, rowEnd));
+                yield return new BandwidthStatistics(new ArraySegment<string>(rawStatisticsArray, rowStart, RowLength));
             }
         }
     }

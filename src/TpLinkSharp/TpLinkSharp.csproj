@@ -6,6 +6,7 @@
     <Authors>Tom Hanks</Authors>
     <Company />
     <RepositoryUrl>https://github.com/tombatron/TpLinkSharp</RepositoryUrl>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>
