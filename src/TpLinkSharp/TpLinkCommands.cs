@@ -16,9 +16,14 @@ namespace TpLinkSharp
 
         public ISystemTools SystemTools { get; }
 
-        public async Task<Status> GetCurrentStatus()
+        public Status GetCurrentStatus()
         {
-            var response = await _client.SendSecuredCommand("/userRpm/StatusRpm.htm");
+            return GetCurrentStatusAsync().GetAwaiter().GetResult();
+        }
+
+        public async Task<Status> GetCurrentStatusAsync()
+        {
+            var response = await _client.SendSecuredCommand("/userRpm/StatusRpm.htm").ConfigureAwait(false);
 
             return Status.FromHtmlResponse(response);
         }

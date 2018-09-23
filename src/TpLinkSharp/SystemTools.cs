@@ -13,9 +13,14 @@ namespace TpLinkSharp
             _client = client;
         }
 
+        public IEnumerable<BandwidthStatistics> GetStatistics()
+        {
+            return GetStatisticsAsync().GetAwaiter().GetResult();
+        }
+
         public async Task<IEnumerable<BandwidthStatistics>> GetStatisticsAsync()
         {
-            var response = await _client.SendSecuredCommand("/userRpm/SystemStatisticRpm.htm?interval=10&sortType=5&Num_per_page=100&Goto_page=1");
+            var response = await _client.SendSecuredCommand("/userRpm/SystemStatisticRpm.htm?interval=10&sortType=5&Num_per_page=100&Goto_page=1").ConfigureAwait(false);
 
             return BandwidthStatisticsCollection.FromHtmlResponse(response);
         }

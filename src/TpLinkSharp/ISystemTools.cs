@@ -6,6 +6,8 @@ namespace TpLinkSharp
 {
     public interface ISystemTools
     {
+        IEnumerable<BandwidthStatistics> GetStatistics();
+
         Task<IEnumerable<BandwidthStatistics>> GetStatisticsAsync();
     }
 }
