@@ -32,7 +32,7 @@ namespace TpLinkSharp.UnitTests
 
                 var tpLinkCommands = new TpLinkCommands(mockCommandRunner.Object);
 
-                var result = await tpLinkCommands.GetCurrentStatus();
+                var result = await tpLinkCommands.GetCurrentStatusAsync();
 
                 Assert.NotNull(result);
             }

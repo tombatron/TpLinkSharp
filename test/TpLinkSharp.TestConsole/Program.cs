@@ -25,7 +25,7 @@ namespace TpLinkSharp.TestConsole
                 {
                     while (!Console.KeyAvailable)
                     {
-                        var status = commands.GetCurrentStatus().GetAwaiter().GetResult();
+                        var status = commands.GetCurrentStatus();
 
                         if (previousReceivedBytes == default(int) && previousSentBytes == default(int))
                         {
